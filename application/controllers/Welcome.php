@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Malenki\Bah\S;
+
 class Welcome extends CI_Controller {
 
 	/**
@@ -20,6 +22,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		
+		$test = new S('Hello, I am from composer');
+		echo $test->upper;
 		$this->load->view('welcome_message');
 	}
 }

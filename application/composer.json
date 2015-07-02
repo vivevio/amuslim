@@ -1,0 +1,5 @@
+{
+    "require":{
+ 		"malenki/bah": "dev-master"
+    }
+}
