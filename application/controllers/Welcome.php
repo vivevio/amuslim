@@ -23,8 +23,6 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		
-		$test = new S('Hello, I am from composer');
-		echo $test->upper;
-		$this->load->view('welcome_message');
+		echo 'asd';
 	}
 }
