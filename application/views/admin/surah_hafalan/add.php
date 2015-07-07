@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Edit surah</h3>
+          <h3 class="box-title">Add new</h3>
         </div><!-- /.box-header -->
         
         <div class="box-body">
@@ -16,32 +16,26 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i> Success!</h4>
           </div>
+
+          <?php echo $msg; ?>
         </div>
 
         <!-- form start -->
-        <form action="<?php echo site_url('admin/ayat/save_changes/old-data') ?>" method="post" id="ayat" role="form">
+        <?php echo form_open_multipart('admin/surah_hafalan/save_changes/new-data', array('id'=>'surah','role'=>'form')); ?>
           <div class="box-body">
             <div class="form-group">
               <label for="2">Surah name</label>
-              <input type="hidden" name="id" value="<?php echo $post->ayat_id ?>">
-              <input type="text" name="name" value="<?php echo $post->nama_ayat ?>" class="form-control" id="2" placeholder="Enter name" required>
+              <?php echo dropdown_surah(); ?>
             </div>
 
             <div class="form-group">
-              <label for="3">Nomor surah</label>
-              <?php echo dropdown_nomor_surah( $post->nomor_surah ); ?>
+              <label for="3">Murottal name</label>
+              <?php echo dropdown_murottal(); ?>
             </div>
 
             <div class="form-group">
-              <label for="3">Knowledge</label>
-              <textarea class="textarea" name="info" placeholder="Type information about those surah here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                <?php echo $post->info ?>
-              </textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="4">Link Source</label>
-              <input type="url" name="sumber_info" value="<?php echo $post->sumber_info ?>" class="form-control" id="4" placeholder="Enter URL for source of information if any">
+              <label for="4">Upload audio</label>
+              <input type="file" name="file" accept="audio/*">
             </div>
 
           </div><!-- /.box-body -->

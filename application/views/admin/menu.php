@@ -11,16 +11,16 @@ $main_menu = array(
       'url'  => site_url('admin/murottal')
     ),
     array(
-      'text' => 'Ayat',
+      'text' => 'Surah',
       'url'  => site_url('admin/ayat')
     ),
     array(
-      'text' => 'Ayat Audio',
-      'url'  => site_url('admin/ayat_general')
+      'text' => 'Surah Audio',
+      'url'  => site_url('admin/surah_audio')
     ),
     array(
-      'text' => 'Ayat Hafalan',
-      'url'  => site_url('admin/ayat_hafalan')
+      'text' => 'Surah Hafalan',
+      'url'  => site_url('admin/surah_hafalan')
     ),
 );
 

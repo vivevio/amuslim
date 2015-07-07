@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b080a7b3c5d245d34d1d369130705856",
+    "hash": "5b7996eec278790e105b7ff332768f35",
     "packages": [
         {
             "name": "malenki/bah",

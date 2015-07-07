@@ -12,6 +12,13 @@ class Ayat_model extends AM_Model {
 		return $this->db->get( $this->table_name )->row();
 	}
 
+	public function get_many( $param = array() )
+	{
+
+		$this->db->order_by('nomor_surah', 'ASC');
+		return $this->db->get( $this->table_name )->result();
+	}
+
 }
 
 /* End of file Ayat_model.php */

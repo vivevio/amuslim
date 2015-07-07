@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Add new ayat</h3>
+          <h3 class="box-title">Add new surah</h3>
         </div><!-- /.box-header -->
         
         <div class="box-body">
@@ -22,13 +22,18 @@
         <form action="<?php echo site_url('admin/ayat/save_changes/new-data') ?>" method="post" id="ayat" role="form">
           <div class="box-body">
             <div class="form-group">
-              <label for="2">Ayat name</label>
+              <label for="2">Ayat surah</label>
               <input type="text" name="name" class="form-control" id="2" placeholder="Enter name" required>
             </div>
 
             <div class="form-group">
+              <label for="3">Nomor surah</label>
+              <?php echo dropdown_nomor_surah(); ?>
+            </div>
+
+            <div class="form-group">
               <label for="3">Knowledge</label>
-              <textarea class="textarea" name="info" placeholder="Type information about those ayat here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea class="textarea" name="info" placeholder="Type information about those surah here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
 
             <div class="form-group">

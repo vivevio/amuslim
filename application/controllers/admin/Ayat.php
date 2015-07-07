@@ -20,6 +20,8 @@ class Ayat extends AM_Admin {
 
 	public function change( $id )
 	{
+
+		$this->load->helper('form');
 		$data['post'] = $this->ayat_model->get_one( array( $id ) );
 		$data['optional_plugin_style'] = 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css';
 		$data['optional_plugin'] = 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js';
@@ -30,6 +32,7 @@ class Ayat extends AM_Admin {
 	public function add()
 	{
 		
+		$this->load->helper('form');
 		$data['js_footer'] = $this->load->view('admin/ayat/js', null, TRUE);
 		$data['optional_plugin_style'] = 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css';
 		$data['optional_plugin'] = 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js';
@@ -42,7 +45,7 @@ class Ayat extends AM_Admin {
 		if( ! isset( $_POST ) || empty( $_POST ) ) show_404();
 		
 		$this->load->helper('array');
-		$selected_field = array('name','info','sumber_info');
+		$selected_field = array('name','info', 'nomor_surah', 'sumber_info');
 
 		if( $type === 'old-data' ) {
 
@@ -52,19 +55,20 @@ class Ayat extends AM_Admin {
 			$data = array(
 					'nama_ayat' => $field['name'],
 					'info' => $field['info'],
-					'sumber_info' => $field['sumber_info']
+					'sumber_info' => $field['sumber_info'],
+					'nomor_surah' => $field['nomor_surah']
 				);
 
 			$q = $this->ayat_model->update( array( 'ayat_id' => $field['id'] ), $data );
 			if( $q ) {
 
 				$return['result'] = TRUE;
-				$return['msg'] = 'Success to update ayat.';
+				$return['msg'] = 'Success to update surah.';
 
 			} else {
 
 				$return['result'] = FALSE;
-				$return['msg'] = 'Failed to update ayat.';
+				$return['msg'] = 'Failed to update surah.';
 			}
 
 		} else {
@@ -73,18 +77,19 @@ class Ayat extends AM_Admin {
 			$data = array(
 					'nama_ayat' => $field['name'],
 					'info' => $field['info'],
-					'sumber_info' => $field['sumber_info']
+					'sumber_info' => $field['sumber_info'],
+					'nomor_surah' => $field['nomor_surah']
 				);
 			$q = $this->ayat_model->add( $data );
 			if( $q ) {
 
 				$return['result'] = TRUE;
-				$return['msg'] = 'Success to added ayat.';
+				$return['msg'] = 'Success to added surah.';
 
 			} else {
 
 				$return['result'] = FALSE;
-				$return['msg'] = 'Failed to added ayat.';
+				$return['msg'] = 'Failed to added surah.';
 			}
 		}
 	
@@ -101,11 +106,11 @@ class Ayat extends AM_Admin {
 		$d = $this->ayat_model->delete( array( 'ayat_id' => $id ) );
 		if( $d ) {
 
-			$this->session->set_flashdata('msg', $this->message_success('Ayat has been deleted.'));
+			$this->session->set_flashdata('msg', $this->message_success('Surah has been deleted.'));
 			redirect('admin/ayat','refresh');
 		} else {
 
-			$this->session->set_flashdata('msg', $this->message_error('Ayat fail to delete.'));
+			$this->session->set_flashdata('msg', $this->message_error('Surah fail to delete.'));
 			redirect('admin/ayat','refresh');
 		}
 	}

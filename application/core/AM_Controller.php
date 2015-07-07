@@ -7,6 +7,11 @@ class AM_Controller extends CI_Controller {
 	{
 		
 		parent::__construct();
+		date_default_timezone_set('Asia/Jakarta');
+		$this->public_audio = 'public/audio/';
+		$this->public_audio_hafalan = 'public/audio-hafalan/';
+		DEFINE( 'PUBLICAUDIO', './' . $this->public_audio );
+		DEFINE( 'PUBLICAUDIOHAFALAN', './' . $this->public_audio_hafalan );
 	}
 
 }
@@ -51,6 +56,48 @@ class AM_admin extends AM_Controller {
 		
 		$msg = "<div class='callout callout-danger'><h4>Information!</h4> <p>$message</p></div>";
 		return $msg;
+	}
+
+	protected function _do_upload_audio( $dir = PUBLICAUDIO )
+	{
+		
+		$config['upload_path']          = $dir;
+        $config['allowed_types']        = 'mp3|aif|aiff|wav';
+        $config['encrypt_name']        = TRUE;
+        $config['max_size']             = 8000;
+
+
+        $return = array();
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload( 'file' )) {
+
+            $return['result'] = FALSE;
+            $return['msg'] = $this->upload->display_errors();
+
+        } else {
+
+            $return['result'] = TRUE;
+            $return['msg'] = $this->upload->data();
+        }
+
+        return $return;
+	}
+
+	protected function _delete_file_audio( $id )
+	{
+
+		$this->load->model('surah_audio_model');
+		$post = $this->surah_audio_model->get_one( array( $id ) );
+		if( $post ) {
+
+			$file_path = $post->url_audio;
+			unlink( './' . $file_path );
+			return true;
+		} else {
+
+			return false;
+		}
 	}
 }
 
